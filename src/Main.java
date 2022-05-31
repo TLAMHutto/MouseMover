@@ -26,14 +26,27 @@ class Main
                     int cursorPositionY = MouseInfo.getPointerInfo().getLocation().y;
                     int firstX = cursorPositionX + 1;
                     int firstY = cursorPositionY + 1;
+                    int secondX = cursorPositionX - 1;
+                    int secondY = cursorPositionY - 1;
 
+                    //get width and height of the screen
+                    Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+                    int screenWidth = screenSize.width;
+                    int screenHeight = screenSize.height;
+                    System.out.println("screenWidth: " + screenWidth);
+                    System.out.println("screenHeight: " + screenHeight);
                     try {
                         Robot robot = new Robot();
-                        robot.mouseMove(firstX, firstY);
-
-                    } catch (AWTException e) {
-                        e.printStackTrace();
+                        if (cursorPositionX < screenWidth && cursorPositionY < screenHeight) {
+                            robot.mouseMove(firstX, firstY);
+                        }
+                        if (cursorPositionX > 0 && cursorPositionY > 0) {
+                            robot.mouseMove(secondX, secondY);
+                        }
+                    } catch (AWTException e1) {
+                        e1.printStackTrace();
                     }
+
                     System.out.println("Running: " + new java.util.Date());
                     JTextArea jTextArea = new JTextArea();
                     jTextArea.setEditable(false);
@@ -45,7 +58,7 @@ class Main
                     //system.out.print size of jframe
                     System.out.println(frame.getSize());
                 }
-            }, 0, 10000);
+            }, 0, 30000);
         });}}
 
 
