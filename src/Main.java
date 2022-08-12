@@ -55,7 +55,7 @@ class Main
                     frame.add(jTextArea);
                     frame.setVisible(true);
                     stopButton.addActionListener(e -> timer.cancel());
-                    //system.out.print size of jframe
+
                     System.out.println(frame.getSize());
                 }
             }, 0, 30000);
